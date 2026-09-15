@@ -6,16 +6,19 @@ class CustomListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: MediaQuery.of(context).size.height * .30,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (context, index) {
-          return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
-            child: CustomListViewItem(),
-          );
-        },
+    return Padding(
+      padding: const EdgeInsets.only(left: 24),
+      child: SizedBox(
+        height: MediaQuery.of(context).size.height * .30,
+        child: ListView.builder(
+          scrollDirection: Axis.horizontal,
+          itemBuilder: (context, index) {
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              child: CustomListViewItem(),
+            );
+          },
+        ),
       ),
     );
   }
