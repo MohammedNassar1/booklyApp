@@ -23,8 +23,6 @@ class _SplashViewBodyState extends State<SplashViewBody>
     navigationToHome();
   }
 
- 
-
   @override
   void dispose() {
     super.dispose();
@@ -37,7 +35,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Image.asset(AssitsImage.logo),
+        Image.asset(AssetsImage.logo),
         Center(child: slideTransitionText(slidinganimation: slidinganimation)),
       ],
     );
@@ -54,7 +52,8 @@ class _SplashViewBodyState extends State<SplashViewBody>
     ).animate(animationController);
     animationController.forward();
   }
-   void navigationToHome() {
+
+  void navigationToHome() {
     Future.delayed(const Duration(seconds: 2), () {
       Get.to(() => const HomeView(), transition: Transition.fadeIn);
     });
