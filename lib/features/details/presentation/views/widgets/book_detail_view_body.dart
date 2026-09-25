@@ -1,6 +1,5 @@
 import 'package:bookly_app/constents.dart';
 import 'package:bookly_app/core/utils/styles.dart';
-import 'package:bookly_app/core/widgets/custom_button.dart';
 import 'package:bookly_app/features/details/presentation/views/widgets/book_rating.dart';
 import 'package:bookly_app/features/details/presentation/views/widgets/custom_book_action.dart';
 import 'package:bookly_app/features/details/presentation/views/widgets/custom_book_details_app_bar.dart';
@@ -42,7 +41,38 @@ class BookDetailViewBody extends StatelessWidget {
           ),
           const SizedBox(height: 38),
           CustomBookAction(),
+          const SizedBox(height: 50),
+          Align(
+            alignment: AlignmentGeometry.centerLeft,
+            child: Text(
+              'You can also like',
+              style: Styles.textStyle14.copyWith(fontWeight: FontWeight.bold),
+            ),
+          ),
+          const SizedBox(height: 16),
+          SimilarBooksListview(),
+          //          const SizedBox(height: 40),
         ],
+      ),
+    );
+  }
+}
+
+class SimilarBooksListview extends StatelessWidget {
+  const SimilarBooksListview({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: MediaQuery.of(context).size.height * .15,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemBuilder: (context, index) {
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 5),
+            child: customBookImage(),
+          );
+        },
       ),
     );
   }
