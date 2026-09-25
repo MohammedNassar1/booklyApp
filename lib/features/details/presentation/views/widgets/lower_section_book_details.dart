@@ -1,6 +1,7 @@
 import 'package:bookly_app/core/utils/styles.dart';
 import 'package:bookly_app/features/details/presentation/views/widgets/similar_book_list_view.dart';
 import 'package:flutter/material.dart';
+
 class LowerSectionBookDetails extends StatelessWidget {
   const LowerSectionBookDetails({super.key});
 
