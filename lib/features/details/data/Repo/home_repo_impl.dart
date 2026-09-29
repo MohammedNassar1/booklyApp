@@ -9,6 +9,7 @@ class HomeRepoImpl implements HomeRepo {
   final ApiService apiService;
 
   HomeRepoImpl({required this.apiService});
+
   @override
   Future<Either<Failures, List<Bookmodel>>> fetchNewestBooks() async {
     try {
@@ -25,7 +26,7 @@ class HomeRepoImpl implements HomeRepo {
       if (e is DioError) {
         return left(ServerFailure.fromjson(e));
       }
-      return left(ServerFailure(errorMessage: e.toString()));
+      return left(ServerFailure( e.toString()));
     }
   }
 
@@ -45,7 +46,7 @@ class HomeRepoImpl implements HomeRepo {
       if (e is DioError) {
         return left(ServerFailure.fromjson(e));
       }
-      return left(ServerFailure(errorMessage: e.toString()));
+      return left(ServerFailure( e.toString()));
     }
   }
 }

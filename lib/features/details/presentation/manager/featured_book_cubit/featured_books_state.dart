@@ -18,7 +18,7 @@ final class FeaturedBooksFailure extends FeaturedBooksState {
 }
 
 final class FeaturedBooksSuccess extends FeaturedBooksState {
-  final String successMessage;
+  final dynamic successMessage;
 
   FeaturedBooksSuccess({required this.successMessage});
 }

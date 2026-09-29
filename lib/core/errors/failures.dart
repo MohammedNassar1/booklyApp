@@ -1,57 +1,48 @@
 import 'package:dio/dio.dart';
 
-abstract class Failures {}
+abstract class Failures {
+  final String errMessage;
+
+  Failures(this.errMessage);
+}
 
 class ServerFailure extends Failures {
-  final String errorMessage;
-  ServerFailure({required this.errorMessage});
+  ServerFailure(super.errorMessage);
   factory ServerFailure.fromjson(DioError dioError) {
     return switch (dioError.type) {
       DioExceptionType.connectionTimeout => ServerFailure(
-        errorMessage: 'connection timeout with Apiserver',
+        'connection timeout with Apiserver',
       ),
       DioExceptionType.sendTimeout => ServerFailure(
-        errorMessage: 'Send timeout with Apiserver',
+        'Send timeout with Apiserver',
       ),
       DioExceptionType.receiveTimeout => ServerFailure(
-        errorMessage: 'Receive timeout with Apiserver',
+        'Receive timeout with Apiserver',
       ),
-      DioExceptionType.badCertificate => ServerFailure(
-        errorMessage: 'BadCertificate',
-      ),
+      DioExceptionType.badCertificate => ServerFailure('BadCertificate'),
       DioExceptionType.badResponse => ServerFailure.fromresponse(
         dioError.response!.statusCode!,
         dioError.response!.data,
       ),
-      DioExceptionType.cancel => ServerFailure(
-        errorMessage: 'The request is Canceled',
-      ),
-      DioExceptionType.connectionError => ServerFailure(
-        errorMessage: 'Problem in Internet',
-      ),
+      DioExceptionType.cancel => ServerFailure('The request is Canceled'),
+      DioExceptionType.connectionError => ServerFailure('Problem in Internet'),
       DioExceptionType.unknown => ServerFailure(
-        errorMessage: 'UnKnown Error. please try later',
+        'UnKnown Error. please try later',
       ),
       DioExceptionType.transformTimeout => ServerFailure(
-        errorMessage: 'transformTimeout with ApiServer',
+        'transformTimeout with ApiServer',
       ),
     };
   }
   factory ServerFailure.fromresponse(int statusCode, dynamic response) {
     if (statusCode == 400 || statusCode == 401 || statusCode == 403) {
-      return ServerFailure(errorMessage: response['errors']['message']);
+      return ServerFailure(response['errors']['message']);
     } else if (statusCode == 404) {
-      return ServerFailure(
-        errorMessage: 'Your request not found. please try later!',
-      );
+      return ServerFailure('Your request not found. please try later!');
     } else if (statusCode == 500) {
-      return ServerFailure(
-        errorMessage: 'Internal Server Error.please tyr later!',
-      );
+      return ServerFailure('Internal Server Error.please tyr later!');
     } else {
-      return ServerFailure(
-        errorMessage: 'OOPS There was An Error.Please try again',
-      );
+      return ServerFailure('OOPS There was An Error.Please try again');
     }
   }
 }
