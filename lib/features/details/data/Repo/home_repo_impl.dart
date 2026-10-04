@@ -11,11 +11,11 @@ class HomeRepoImpl implements HomeRepo {
   HomeRepoImpl({required this.apiService});
 
   @override
-  Future<Either<Failures, List<Bookmodel>>> fetchFeaturedBooks() async {
+  Future<Either<Failures, List<Bookmodel>>> FetchFeaturedBooksimpl() async {
     try {
       var data = await apiService.get(
         endPoint:
-            'volumes?q=subject:programming&key=AIzaSyACh7lx2HgjPU4FtdeXUQcNNh5DTtTQBdQ',
+            'volumes?q=programming&key=AIzaSyACh7lx2HgjPU4FtdeXUQcNNh5DTtTQBdQ',
       );
       List<Bookmodel> books = [];
       for (var item in data['items']) {
@@ -23,7 +23,7 @@ class HomeRepoImpl implements HomeRepo {
       }
       return right(books);
     } on Exception catch (e) {
-      if (e is DioError) {
+      if (e is DioException) {
         return left(ServerFailure.fromjson(e));
       }
       return left(ServerFailure(e.toString()));

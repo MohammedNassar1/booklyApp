@@ -10,7 +10,7 @@ class FeaturedBooksCubit extends Cubit<FeaturedBooksState> {
   Future<void> fetchFeaturedBooks() async {
     emit(FeaturedBooksLoading());
 
-    var result = await homeRepo.fetchFeaturedBooks();
+    var result = await homeRepo.FetchFeaturedBooksimpl();
     result.fold(
       (failure) {
         emit(FeaturedBooksFailure(failureMessage: failure.errMessage));
