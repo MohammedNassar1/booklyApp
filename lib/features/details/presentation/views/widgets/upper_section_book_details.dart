@@ -16,7 +16,9 @@ class UpperSectionBookDetails extends StatelessWidget {
         CustomBookDetailsAppBar(),
         SizedBox(
           width: MediaQuery.of(context).size.width * 0.45,
-          child: customBookImage(),
+          child: customBookImage(
+            imageUrl: 'https://www.magnific.com/free-photos-vectors/pict',
+          ),
         ),
         const SizedBox(height: 45),
         Text(

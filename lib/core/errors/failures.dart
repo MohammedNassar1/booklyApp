@@ -8,7 +8,7 @@ abstract class Failures {
 
 class ServerFailure extends Failures {
   ServerFailure(super.errorMessage);
-  factory ServerFailure.fromjson(DioError dioError) {
+  factory ServerFailure.fromjson(DioException dioError) {
     return switch (dioError.type) {
       DioExceptionType.connectionTimeout => ServerFailure(
         'connection timeout with Apiserver',

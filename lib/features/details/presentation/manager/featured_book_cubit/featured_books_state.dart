@@ -18,7 +18,7 @@ final class FeaturedBooksFailure extends FeaturedBooksState {
 }
 
 final class FeaturedBooksSuccess extends FeaturedBooksState {
-  final dynamic successMessage;
+  final List<Bookmodel> books;
 
-  FeaturedBooksSuccess({required this.successMessage});
+  FeaturedBooksSuccess({required this.books});
 }
